@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <section>
+        <h2>Welcome to SnapDish</h2>
+        <p>Your AI-driven guide to easy meal planning.</p>
+        <a href="{{ url_for('register') }}">Get Started</a>
+    </section>
+{% endblock %}
