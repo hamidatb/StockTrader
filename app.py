@@ -7,7 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from helpers import apology, login_required, lookup, usd
 
-# Configure application
+# Configure application name
 app = Flask(__name__)
 
 # Custom filter
