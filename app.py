@@ -21,8 +21,17 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
 
-db.execute("DROP TABLE IF EXISTS transactions")
+db.execute("""
+    CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+           username TEXT NOT NULL, 
+           hash TEXT NOT NULL, 
+           cash NUMERIC NOT NULL DEFAULT 10000.00);""")
 
+
+db.execute("""
+        CREATE UNIQUE INDEX IF NOT EXISTS username ON users (username);""")
+
+db.execute("DROP TABLE IF EXISTS transactions")
 db.execute("""
 CREATE TABLE IF NOT EXISTS transactions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

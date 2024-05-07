@@ -1,10 +1,38 @@
 {% extends "layout.html" %}
-{% block title %}Home{% endblock %}
 
-{% block content %}
-    <section>
-        <h2>Welcome to SnapDish</h2>
-        <p>Your AI-driven guide to easy meal planning.</p>
-        <a href="{{ url_for('register') }}">Get Started</a>
-    </section>
+{% block title %}
+    User Index
+{% endblock %}
+
+{% block main %}
+<h1>Portfolio</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Total Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stock in holdings %}
+        <tr>
+            <td>{{ stock.symbol }}</td>
+            <td>{{ stock.shares }}</td>
+            <td>{{ stock.price | usd }}</td>
+            <td>{{ stock.total_value | usd }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3">Cash</td>
+            <td>{{ cash | usd }}</td>
+        </tr>
+        <tr>
+            <td colspan="3"><strong>Total Portfolio Value</strong></td>
+            <td><strong>{{ total_portfolio_value | usd }}</strong></td>
+        </tr>
+    </tbody>
+</table>
 {% endblock %}
